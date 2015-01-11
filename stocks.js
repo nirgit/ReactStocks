@@ -1,7 +1,11 @@
-define(['react'], function(React) {
+define(['react', 'stockTable'], function(React, StockTable) {
+	'use strict';
+
 	return React.createClass({
+		displayName: "Stocks",
 		render: function() {
-			return React.createElement('div', {}, "Hello Stocks");
+			var children = ["Search Bar", React.createElement(StockTable, {})];
+			return React.createElement('div', {}, children);
 		}
 	});
 });

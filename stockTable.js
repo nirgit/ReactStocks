@@ -1,4 +1,4 @@
-define(['react', 'lodash', 'stocksData'], function(React, _, StocksData) {
+define(['react', 'lodash', 'stocksData', 'stock', 'stockCategory'], function(React, _, StocksData, stock, stockCategory) {
 	'use strict';
 
 	return React.createClass({
@@ -6,9 +6,11 @@ define(['react', 'lodash', 'stocksData'], function(React, _, StocksData) {
 		render: function() {
 			var rows = [];
 			_.forOwn(StocksData, function(category, key) {
-				rows.push(key);
+				var stocksCategory = React.createElement(stockCategory, {name: key});
+				rows.push(stocksCategory);
 				_.forOwn(category, function(stockValue, stockName) {
-					rows.push(stockName + " " + stockValue);
+					var element = React.createElement(stock, {name: stockName, value: stockValue});
+					rows.push(element);
 				});
 			});
 			var props = {

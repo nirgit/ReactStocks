@@ -1,16 +1,28 @@
 define([], function() {
 	'use strict';
 
-	return {
+	function getQuotePrice() {
+		var price = Math.random() * 100;
+		price = price.toFixed(3);
+		return price;
+	}
+
+	function getStockQuotes() {
+		return {
 		'Sports': {
-			'Football': 49.22,
-			'Basketball': 51.42,
-			'Baseball': 14.16
-		},
+			'Football': getQuotePrice(),
+			'Basketball': getQuotePrice(),
+			'Baseball': getQuotePrice()
+			},
 		'Hi-Tech': {
-			'Apple': 102.44,
-			'Google': 92.1,
-			'Wix': 28
-		}
+			'Apple': getQuotePrice(),
+			'Google': getQuotePrice(),
+			'Wix': getQuotePrice()
+			}
+		};
+	}
+
+	return {
+		getStockQuotes: getStockQuotes
 	};
 });

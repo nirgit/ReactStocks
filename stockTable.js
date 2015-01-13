@@ -3,9 +3,20 @@ define(['react', 'lodash', 'stocksData', 'stock', 'stockCategory'], function(Rea
 
 	return React.createClass({
 		displayName: "StockTable",
+		getInitialState: function() {
+			var stockQuotes = StocksData.getStockQuotes();
+			setInterval(this.getFreshQuotes, 2000);
+			return {
+				stockQuotes: stockQuotes
+			};
+		},
+		getFreshQuotes: function() {
+			var stockQuotes = StocksData.getStockQuotes();
+			this.setState({'stockQuotes': stockQuotes});
+		},
 		render: function() {
 			var rows = [];
-			_.forOwn(StocksData, function(category, key) {
+			_.forOwn(this.state.stockQuotes, function(category, key) {
 				var stocksCategory = React.createElement(stockCategory, {name: key});
 				rows.push(stocksCategory);
 				_.forOwn(category, function(stockValue, stockName) {

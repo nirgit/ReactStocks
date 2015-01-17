@@ -13,7 +13,11 @@ define(['lodash', 'react'], function(_, React) {
 					"type": "text", 
 					"onChange": this.onFilterChange
 			}, this.state.searchText);
-			return React.createElement("div", {}, ["Search stock: ", searchField]);
+			return React.createElement("div", {
+				style: {
+					'margin': '5px 0'
+				}
+			}, ["Search stock: ", searchField]);
 		}
 	});
 });

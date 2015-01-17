@@ -4,15 +4,16 @@ define(['lodash'], function(_) {
 	var isFirstTime = true;
 
 	var stocksToUpdate = {
-		"Sports": ['Football', 'Basketball', 'Baseball'],
-		"Hi-Tech": ['Apple', 'Google', 'Wix']
+		"Food": ["McDonalds", "Kraft", "Heinz", "KFC"],
+		"Sports": ['Football', 'Basketball', 'Baseball', 'NBA', 'NFL', 'NHL', 'Fifa'],
+		"Technology": ['Apple', 'Google', 'Wix', 'Microsoft', 'Texas Instruments', 'Dell', 'Intel', 'IBM', 'HP', 'Deloitte']
 	}
 
 	function shouldUpdate() {
 		if (isFirstTime) {
 			return true;
 		}
-		return Math.random() < 0.45;
+		return Math.random() < 0.75;
 	}
 
 	function getQuotePrice() {

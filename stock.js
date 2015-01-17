@@ -10,11 +10,12 @@ define(['react'], function(React) {
 				this.isInit = false;
 			}
 			this.isUp = nextProps.value > this.state.value;
+			this.isEqual = nextProps.value === this.state.value;
 			this.setState({'value': nextProps.value});
 		},
 		render: function() {
 			var bgColor = 'white';
-			if (!this.isInit) {
+			if (!this.isInit && !this.isEqual) {
 				if (this.isUp) {
 					bgColor = 'green';
 				} else {

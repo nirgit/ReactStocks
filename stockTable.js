@@ -12,7 +12,8 @@ define(['react', 'lodash', 'stocksData', 'stock', 'stockCategory'], function(Rea
 		},
 		getFreshQuotes: function() {
 			var stockQuotes = StocksData.getStockQuotes();
-			this.setState({'stockQuotes': stockQuotes});
+			var mergedState = _.merge(this.state.stockQuotes, stockQuotes);
+			this.setState({'stockQuotes': mergedState});
 		},
 		render: function() {
 			var rows = [];

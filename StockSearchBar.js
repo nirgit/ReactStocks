@@ -4,13 +4,14 @@ define(['lodash', 'react'], function(_, React) {
 		getInitialState: function() {
 			return {'searchText': ''};
 		},
+		onFilterChange: function(evt) {
+			this.props.filter.requestChange(evt.target.value);
+		},
 		render: function() {
 			var searchField = React.createElement("input", 
 				{
 					"type": "text", 
-					"onChange": function(evt) {
-						this.setState({'searchText': evt.target.value});
-					}
+					"onChange": this.onFilterChange
 			}, this.state.searchText);
 			return React.createElement("div", {}, ["Search stock: ", searchField]);
 		}

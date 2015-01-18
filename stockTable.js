@@ -27,13 +27,19 @@ define(['react', 'lodash', 'stocksData', 'stock', 'stockCategory'], function(Rea
 			var $this = this;
 			var rows = [];
 			_.forOwn(this.state.stockQuotes, function(category, key) {
+				var stockRows = [];
 				var stocksCategory = React.createElement(stockCategory, {name: key});
-				rows.push(stocksCategory);
+				stockRows.push(stocksCategory);
+				var stocksVisibleInCategory = 0;
 				_.forOwn(category, function(stockValue, stockName) {
 					var stockVisibility = $this.isStockVisible(stockName);
 					var element = React.createElement(stock, {name: stockName, value: stockValue, isVisible: stockVisibility});
-					rows.push(element);
+					stockRows.push(element);
+					stocksVisibleInCategory += stockVisibility ? 1 : 0;
 				});
+				if (stocksVisibleInCategory > 0) {
+					rows = rows.concat(stockRows);
+				}
 			});
 			var props = {
 				style: {

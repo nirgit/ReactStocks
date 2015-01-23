@@ -19,7 +19,7 @@ define(['react', 'lodash', 'stocksData', 'stock', 'stockCategory'], function(Rea
 			if (!stockName) {
 				return false;
 			}
-			var filter = this.props.filter.value;
+			var filter = this.props.filter;
 			filter = filter.toLowerCase();
 			return stockName.toLowerCase().indexOf(filter) !== -1;
 		},

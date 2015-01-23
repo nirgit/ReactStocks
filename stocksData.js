@@ -6,7 +6,8 @@ define(['lodash'], function(_) {
 	var stocksToUpdate = {
 		"Food": ["McDonalds", "Kraft", "Heinz", "KFC"],
 		"Sports": ['Football', 'Basketball', 'Baseball', 'NBA', 'NFL', 'NHL', 'Fifa'],
-		"Technology": ['Apple', 'Google', 'Wix', 'Microsoft', 'Texas Instruments', 'Dell', 'Intel', 'IBM', 'HP', 'Deloitte']
+		"Technology": ['Apple', 'Google', 'Wix', 'Microsoft', 'Texas Instruments', 'Dell', 'Intel', 'IBM', 'HP', 'Deloitte'],
+		"Fun": ['Lexy Inc.', 'Funster', 'EA Sports', 'Play!']
 	}
 
 	function shouldUpdate() {

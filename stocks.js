@@ -11,13 +11,9 @@ define(['react', 'stockTable', 'StockSearchBar'], function(React, StockTable, St
 			this.setState({'filter': newValue});
 		},
 		render: function() {
-			var valueLink = {
-				value: this.state.filter,
-				requestChange: this.handleChange
-			};
 			var children = [
-				React.createElement(StockSearchBar, {'filter': valueLink}), 
-				React.createElement(StockTable, {'filter': valueLink})
+				React.createElement(StockSearchBar, {'filterValue': this.state.filter,'onFilterChange': this.handleChange}), 
+				React.createElement(StockTable, {'filter': this.state.filter})
 			];
 			return React.createElement('div', {style: {width: '300px'}}, children);
 		}

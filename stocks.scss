@@ -2,8 +2,16 @@ body {
 	background-color: aliceblue;
 }
 
+.stocks-top-container {
+	width: 400px;
+	margin: 0 auto;
+}
+
 .stock {
-	display: block;
+	border-top: 1px solid silver;
+  	padding: 5px 0px; 
+  	width: 100%;
+  	transition: all 0.5s ease;
 }
 
 .stock-hidden {

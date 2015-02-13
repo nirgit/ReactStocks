@@ -46,7 +46,11 @@ define(['react', 'lodash', 'stocksData', 'stock', 'stockCategory'], function(Rea
 					'border': '1px solid green'
 				}
 			};
-			return React.createElement('div', props, rows);
+			if (rows.length > 0) {
+				return React.createElement('div', props, rows);
+			} else {
+				return React.createElement('div', props, "No stocks match '" + this.props.filter + "'");
+			}
 		}
 	});
 });

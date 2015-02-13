@@ -12,7 +12,8 @@ define(['react'], function(React) {
 			this.lastChangeSign = Math.sign(nextProps.value - this.state.value);
 			this.setState({'value': nextProps.value});
 		},
-		render: function() {
+		getStockBackgroundColor: function() {
+			var bgColor;
 			if (this.lastChangeSign === 1) {
 				bgColor = 'green';
 			} else if (this.lastChangeSign === -1) {
@@ -20,15 +21,20 @@ define(['react'], function(React) {
 			} else if (this.lastChangeSign === 0) {
 				bgColor = 'white';
 			}
+			return bgColor;
+		},
+		render: function() {
+			var bgColor = this.getStockBackgroundColor();
 			return React.createElement('div', {
-					style: {'border-top': '1px solid silver', margin: '2px 0', width: '100%', 'display': this.props.isVisible ? "block" : "none"}
+					className: "stock",
+					style: { 'display': this.props.isVisible ? "block" : "none", 'background-color': bgColor}
 				}, 
 				[
 					React.createElement('div', 
 						{style: {display: 'inline-block', width: '50%'}}, 
 						this.props.name),
 					React.createElement('div', 
-						{style: {display: 'inline-block', width: '50%', 'text-align': 'center', 'background-color': bgColor}}, 
+						{style: {display: 'inline-block', width: '50%', 'text-align': 'center'}}, 
 						this.state.value !== -1 ? this.state.value : ""),
 				]);
 		}

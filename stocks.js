@@ -15,7 +15,7 @@ define(['react', 'stockTable', 'StockSearchBar'], function(React, StockTable, St
 				React.createElement(StockSearchBar, {'filterValue': this.state.filter,'onFilterChange': this.handleChange}), 
 				React.createElement(StockTable, {'filter': this.state.filter})
 			];
-			return React.createElement('div', {style: {width: '300px'}}, children);
+			return React.createElement('div', {className: 'stocks-top-container'}, children);
 		}
 	});
 });

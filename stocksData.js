@@ -1,6 +1,7 @@
 define(['lodash'], function(_) {
 	'use strict';
 
+	var quotesData = null;
 	var isFirstTime = true;
 
 	var stocksToUpdate = {
@@ -14,23 +15,27 @@ define(['lodash'], function(_) {
 		if (isFirstTime) {
 			return true;
 		}
-		return Math.random() < 0.75;
+		return Math.random() < 0.5;
 	}
 
-	function getQuotePrice() {
-		var price = Math.random() * 100;
-		price = price.toFixed(3);
-		return price;
+	function getQuotePrice(lastPrice) {
+		if (!lastPrice) {
+			var price = Math.random() * 100;
+			price = price.toFixed(3);
+			return price;
+		} else {
+			return Math.max(0.01, (parseFloat(lastPrice) + (Math.random() > 0.5 ? 1 : -1) * Math.random() * 10).toFixed(3));
+		}
 	}
 
 	function getStockQuotes() {
-		var quotes = {};
+		quotesData = quotesData || {};
 		_.forOwn(stocksToUpdate, function(stocks, category) {
 			if (shouldUpdate()) {
-				quotes[category] = {};
+				quotesData[category] = quotesData[category] || {};
 				_.forEach(stocks, function(stock) {
 					if (shouldUpdate()) {
-						quotes[category][stock] = getQuotePrice();
+						quotesData[category][stock] = getQuotePrice(quotesData[category][stock]);
 					}
 				});
 			}
@@ -38,7 +43,7 @@ define(['lodash'], function(_) {
 		if (isFirstTime) { 
 			isFirstTime = false;
 		}
-		return quotes;
+		return quotesData;
 	}
 
 	return {

@@ -1,5 +1,6 @@
 define(['react'], function(React) {
 	return React.createClass({
+		displayName: "Stock",
 		getInitialState: function() {
 			this.isInit = true;
 			this.lastChangeSign = 0;

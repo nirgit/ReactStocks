@@ -1,5 +1,6 @@
 define(['react'], function(React) {
 	return React.createClass({
+		displayName: "StockCategory",
 		render: function() {
 			return React.createElement('div',
 				{

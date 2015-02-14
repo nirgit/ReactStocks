@@ -1,4 +1,7 @@
 define(['react'], function(React) {
+
+	var cx = React.addons.classSet;
+
 	return React.createClass({
 		displayName: "Stock",
 		getInitialState: function() {
@@ -13,22 +16,19 @@ define(['react'], function(React) {
 			this.lastChangeSign = Math.sign(nextProps.value - this.state.value);
 			this.setState({'value': nextProps.value});
 		},
-		getStockBackgroundColor: function() {
-			var bgColor;
-			if (this.lastChangeSign === 1) {
-				bgColor = 'green';
-			} else if (this.lastChangeSign === -1) {
-				bgColor = 'red';
-			} else if (this.lastChangeSign === 0) {
-				bgColor = 'white';
-			}
-			return bgColor;
+		getStockStyle: function() {
+			var classes = cx({
+				'stock': true,
+				'stock-price-up': this.lastChangeSign === 1,
+				'stock-price-down': this.lastChangeSign === -1
+			});
+			return classes;
 		},
 		render: function() {
-			var bgColor = this.getStockBackgroundColor();
+			var stockClasses = this.getStockStyle();
 			return React.createElement('div', {
-					className: "stock",
-					style: { 'display': this.props.isVisible ? "block" : "none", 'background-color': bgColor}
+					className: stockClasses,
+					style: { 'display': this.props.isVisible ? "block" : "none"}
 				}, 
 				[
 					React.createElement('div', 
